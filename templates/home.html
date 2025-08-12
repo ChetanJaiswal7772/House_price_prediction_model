@@ -56,20 +56,44 @@
             border-radius: 5px;
             display: inline-block;
         }
+        .error {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #b30000;
+            background: #ffe0e0;
+            padding: 10px;
+            border-radius: 5px;
+            display: inline-block;
+        }
     </style>
 </head>
 <body>
     <h1>House Price Prediction</h1>
     <form action="/predict" method="post">
+        {% set friendly_names = {
+            "MedInc": "Median Income",
+            "HouseAge": "House Age",
+            "AveRooms": "Average Rooms",
+            "AveBedrms": "Average Bedrooms",
+            "Population": "Population",
+            "AveOccup": "Average Occupancy",
+            "Latitude": "Latitude",
+            "Longitude": "Longitude"
+        } %}
+        
         {% for col, val in columns.items() %}
-            <label>{{ col }}:</label>
+            <label>{{ friendly_names[col] }}:</label>
             <input type="number" step="any" name="{{ col }}" value="{{ val }}" required>
         {% endfor %}
         <input type="submit" value="Predict">
     </form>
 
     {% if prediction_text %}
-        <div class="result">{{ prediction_text }}</div>
+        {% if "Error" in prediction_text %}
+            <div class="error">{{ prediction_text }}</div>
+        {% else %}
+            <div class="result">{{ prediction_text }}</div>
+        {% endif %}
     {% endif %}
 </body>
 </html>

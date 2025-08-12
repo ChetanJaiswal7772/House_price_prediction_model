@@ -1,5 +1,19 @@
-Flask
-scikit-learn
-pandas
-numpy
-matplotlib
+Flask==3.0.3
+gunicorn==22.0.0
+numpy==1.25.2
+pandas==2.0.3
+scikit-learn==1.2.2
+scipy==1.14.0
+joblib==1.4.2
+
+# Flask dependencies
+click==8.1.7
+itsdangerous==2.2.0
+Jinja2==3.1.4
+MarkupSafe==2.1.5
+Werkzeug==3.0.3
+
+# Date handling
+python-dateutil==2.9.0.post0
+pytz==2024.1
+tzdata==2024.1
